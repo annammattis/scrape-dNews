@@ -25,11 +25,15 @@ app.set("view engine", "handlebars");
 // Have every request go through our route middleware
 app.use(routes);
 
+
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
+mongoose.connect(MONGODB_URI);
 // If deployed, use the deployed database.
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraped_news";
+// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scrape-dnews";
 
 // Connect to the Mongo DB
-mongoose.connect(MONGODB_URI);
+// mongoose.connect(MONGODB_URI);
 
 // Listen on the port
 app.listen(PORT, function() {
